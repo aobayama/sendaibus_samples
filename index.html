@@ -51,11 +51,36 @@
     <thead><tr><td colspan="2">項目名</td><td>データ</td></tr></thead>
     <tbody><tr><td colspan="2">停留所名</td><td data-bind="text: basic_info.idname.name"></td></tr>
     <tr><td colspan="2">ID</td><td data-bind="text: basic_info.idname.id"></td></tr>
-    <tr><td rowspan="3">発着便数</td><td>平日</td><td data-bind="text: lines.weekday.length"></td></tr>
+    <tr><td rowspan="3">系統数</td><td>平日</td><td data-bind="text: lines.weekday.length"></td></tr>
     <tr><td>土曜</td><td data-bind="text: lines.saturday.length"></td></tr>
     <tr><td>休日</td><td data-bind="text: lines.holiday.length"></td></tr>
     <tr><td rowspan="2">座標</td><td>緯度</td><td data-bind="text: basic_info.coord.lat"></td></tr>
     <tr><td>経度</td><td data-bind="text: basic_info.coord.lon"></td></tr>
+    </tbody>
+    </table>
+</div>
+</div>
+<div data-bind="visible: selectedStop">
+<h3>系統情報の表示</h3>
+<form>
+	<div class="form-group">
+    <label>曜日を選択</label>
+    <select class="form-control" data-bind="options: dayType, optionsText: 'name', value:selectedDay"></select>
+    </div>
+</form>
+<form data-bind="visible: selectedDay">
+    <div class="form-group">
+    <label>系統を選択</label>
+    <select class="form-control" data-bind="options: lines, optionsText: 'name', value:selectedLine"></select>
+    </div>
+</form>
+<div data-bind="visible: services">
+    <table>
+    <thead><tr><td>項目名</td><td>データ</td></tr></thead>
+    <tbody><tr><td>系統名</td><td data-bind="text: selectedLine.name"></td></tr>
+    <tr><td>ID</td><td data-bind="text: selectedLine.id"></td></tr>
+    <tr><td>運行日</td><td data-bind="text: selectedDay.name"></td></tr>
+    <tr><td>発時刻</td><td><ul data-bind="foreach: services"><li data-bind="text: dept"></li></ul></td></tr>
     </tbody>
     </table>
 </div>

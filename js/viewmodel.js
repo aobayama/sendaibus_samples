@@ -2,10 +2,31 @@ $().ready(function() {
 	"use strict";
     var viewModel=new function(){
 		var self = this;
+		self.dayType = [{id:0,name:"平日"},{id:1,name:"土曜"},{id:2,name:"休日"}];
 		self.stationName = ko.observable("仙台駅");
 		self.stops = ko.observableArray();
 		self.selectedStop = ko.observable();
 		self.stopInfo = ko.observable();
+		self.selectedDay = ko.observable();
+		self.selectedLine = ko.observable();
+		self.services = ko.observableArray();
+		self.lines = ko.computed(function(){
+			if(self.selectedDay()==null||self.stopInfo()==null){
+					return;
+				}
+			var result;
+			switch(self.selectedDay().id){
+				case 0:
+					return self.stopInfo().lines.weekday;
+				case 1:
+					return self.stopInfo().lines.saturday;
+				case 2:
+					return self.stopInfo().iines.holiday;
+				default:
+					return null;
+				}
+				
+			});
 		ko.computed(function(){
 			if(self.stationName()!=null&&self.stationName()!==""){
 			$.getJSON("http://bus.aobayama.net/api/stations/search",{name:self.stationName()},
@@ -25,7 +46,18 @@ $().ready(function() {
 				}
 			);
 			}else{
-				 	self.stopInfo();
+				 	self.stopInfo(null);
+				}
+		});
+				ko.computed(function(){
+			if(self.selectedStop()!=null&&self.selectedLine()){
+			$.getJSON("http://bus.aobayama.net/api/stations/details",{id:self.selectedStop().id,line_id:self.selectedLine().id},
+				function(data){
+					self.services(data.timetable);
+				}
+			);
+			}else{
+				 	self.services(null);
 				}
 		});
 	};
