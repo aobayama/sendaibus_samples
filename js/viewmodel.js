@@ -19,7 +19,7 @@ $().ready(function() {
 		});
 		ko.computed(function(){
 			if(self.selectedStop()!=null){
-			$.getJSON("http://bus.aobayama.net/api/stations/details",{id:self.selectedStop().id},
+			$.getJSON("http://bus.aobayama.net/api/stations/summary",{id:self.selectedStop().id},
 				function(data){
 					self.stopInfo(data);
 				}

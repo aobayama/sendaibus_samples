@@ -48,11 +48,14 @@
 </form>
 <div data-bind="visible: stopInfo, with:stopInfo">
     <table>
-    <thead><tr><td>項目名</td><td>データ</td></tr></thead>
-    <tbody><tr><td>停留所名</td><td data-bind="text: name"></td></tr>
-    <tr><td>ID</td><td data-bind="text: id"></td></tr>
-    <tr><td>発着便数</td><td data-bind="text: timetable.length"></td></tr>
-    <tr><td>座標</td><td data-bind="text: coord"></td></tr>
+    <thead><tr><td colspan="2">項目名</td><td>データ</td></tr></thead>
+    <tbody><tr><td colspan="2">停留所名</td><td data-bind="text: basic_info.idname.name"></td></tr>
+    <tr><td colspan="2">ID</td><td data-bind="text: basic_info.idname.id"></td></tr>
+    <tr><td rowspan="3">発着便数</td><td>平日</td><td data-bind="text: lines.weekday.length"></td></tr>
+    <tr><td>土曜</td><td data-bind="text: lines.saturday.length"></td></tr>
+    <tr><td>休日</td><td data-bind="text: lines.holiday.length"></td></tr>
+    <tr><td rowspan="2">座標</td><td>緯度</td><td data-bind="text: basic_info.coord.lat"></td></tr>
+    <tr><td>経度</td><td data-bind="text: basic_info.coord.lon"></td></tr>
     </tbody>
     </table>
 </div>
