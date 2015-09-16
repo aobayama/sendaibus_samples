@@ -21,7 +21,7 @@ $().ready(function() {
 				case 1:
 					return self.stopInfo().lines.saturday;
 				case 2:
-					return self.stopInfo().iines.holiday;
+					return self.stopInfo().lines.holiday;
 				default:
 					return null;
 				}
