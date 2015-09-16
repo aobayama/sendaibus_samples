@@ -77,9 +77,9 @@
 <div data-bind="visible: services">
     <table>
     <thead><tr><td>項目名</td><td>データ</td></tr></thead>
-    <tbody><tr><td>系統名</td><td data-bind="text: selectedLine.name"></td></tr>
-    <tr><td>ID</td><td data-bind="text: selectedLine.id"></td></tr>
-    <tr><td>運行日</td><td data-bind="text: selectedDay.name"></td></tr>
+    <tbody><tr><td>系統名</td><td data-bind="text:selectedLine() && selectedLine().name"></td></tr>
+    <tr><td>ID</td><td data-bind="text:selectedLine() && selectedLine().id"></td></tr>
+    <tr><td>運行日</td><td data-bind="text: selectedDay().name"></td></tr>
     <tr><td>発時刻</td><td><ul data-bind="foreach: services"><li data-bind="text: dept"></li></ul></td></tr>
     </tbody>
     </table>

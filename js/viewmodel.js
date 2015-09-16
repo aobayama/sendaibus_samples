@@ -1,6 +1,6 @@
 $().ready(function() {
 	"use strict";
-    var viewModel=new function(){
+    var viewModel=function(){
 		var self = this;
 		self.dayType = [{id:0,name:"平日"},{id:1,name:"土曜"},{id:2,name:"休日"}];
 		self.stationName = ko.observable("仙台駅");
@@ -61,5 +61,5 @@ $().ready(function() {
 				}
 		});
 	};
-	ko.applyBindings(viewModel);
+	ko.applyBindings(new viewModel());
 });
