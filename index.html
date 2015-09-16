@@ -100,7 +100,7 @@
 <div data-bind="visible: serviceInfo, with: serviceInfo">
     <table class="table">
     <thead><tr><td>駅ID</td><td>発時刻</td></tr></thead>
-    <tbody data-bind="foreach: dept_times"><tr><td data-bind="text:station_id">系統名</td><td data-bind="text:dept"></td></tr>
+    <tbody data-bind="foreach: dept_times"><tr><td data-bind="text:station.name">系統名</td><td data-bind="text:dept"></td></tr>
     </tbody>
     </table>
 </div>
