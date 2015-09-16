@@ -10,6 +10,8 @@ $().ready(function() {
 		self.selectedDay = ko.observable();
 		self.selectedLine = ko.observable();
 		self.services = ko.observableArray();
+		self.selectedService = ko.observable();
+		self.serviceInfo = ko.observable();
 		self.lines = ko.computed(function(){
 			if(self.selectedDay()==null||self.stopInfo()==null){
 					return;
@@ -49,8 +51,8 @@ $().ready(function() {
 				 	self.stopInfo(null);
 				}
 		});
-				ko.computed(function(){
-			if(self.selectedStop()!=null&&self.selectedLine()){
+		ko.computed(function(){
+			if(self.selectedStop()!=null&&self.selectedLine()!=null){
 			$.getJSON("http://bus.aobayama.net/api/stations/details",{id:self.selectedStop().id,line_id:self.selectedLine().id},
 				function(data){
 					self.services(data.timetable);
@@ -58,6 +60,17 @@ $().ready(function() {
 			);
 			}else{
 				 	self.services(null);
+				}
+		});
+		ko.computed(function(){
+			if(self.selectedService()!=null){
+			$.getJSON("http://bus.aobayama.net/api/buses/details",{id:self.selectedService().bus_id},
+				function(data){
+					self.serviceInfo(data);
+				}
+			);
+			}else{
+				 	self.serviceInfo(null);
 				}
 		});
 	};

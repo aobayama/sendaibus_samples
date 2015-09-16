@@ -89,6 +89,22 @@
     </table>
 </div>
 </div>
+<div data-bind="visible: selectedLine">
+<h3>便情報の表示</h3>
+<form>
+	<div class="form-group">
+    <label>便を選択</label>
+    <select class="form-control" data-bind="options: services, optionsText: 'dept', value:selectedService"></select>
+    </div>
+</form>
+<div data-bind="visible: serviceInfo, with: serviceInfo">
+    <table class="table">
+    <thead><tr><td>駅ID</td><td>発時刻</td></tr></thead>
+    <tbody data-bind="foreach: dept_times"><tr><td data-bind="text:station_id">系統名</td><td data-bind="text:dept"></td></tr>
+    </tbody>
+    </table>
+</div>
+</div>
 </div>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
