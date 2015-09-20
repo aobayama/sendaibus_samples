@@ -20,12 +20,10 @@
 <div class="container">
 <div>
 <h3>停留所の検索</h3>
-<form>
   <div class="form-group">
   <label>停留所名</label>
 <input class="form-control" data-bind="value: stationName">
 </div>
-</form>
 <table data-bind="visible: stops().length > 0" class="table">
 <thead><tr>
         <th>停留所名</th><th>ID</th>
@@ -40,12 +38,10 @@
 </div>
 <div data-bind="visible: stops().length > 0">
 <h3>停留所情報の表示</h3>
-<form>
 	<div class="form-group">
     <label>停留所を選択</label>
     <select class="form-control" data-bind="options: stops, optionsText: 'name', value:selectedStop"></select>
     </div>
-</form>
 <div data-bind="visible: stopInfo, with:stopInfo">
     <table class="table">
     <thead><tr><td colspan="2">項目名</td><td>データ</td></tr></thead>
@@ -63,18 +59,14 @@
 </div>
 <div data-bind="visible: selectedStop">
 <h3>系統情報の表示</h3>
-<form>
 	<div class="form-group">
     <label>曜日を選択</label>
     <select class="form-control" data-bind="options: dayType, optionsText: 'name', value:selectedDay"></select>
     </div>
-</form>
-<form data-bind="visible: selectedDay">
-    <div class="form-group">
+    <div class="form-group" data-bind="visible: selectedDay">
     <label>系統を選択</label>
     <select class="form-control" data-bind="options: lines, optionsText: 'name', value:selectedLine"></select>
     </div>
-</form>
 <div data-bind="visible: services">
     <table class="table">
     <thead><tr><td>項目名</td><td>データ</td></tr></thead>
@@ -91,12 +83,10 @@
 </div>
 <div data-bind="visible: selectedLine">
 <h3>便情報の表示</h3>
-<form>
 	<div class="form-group">
     <label>便を選択</label>
     <select class="form-control" data-bind="options: services, optionsText: 'dept', value:selectedService"></select>
     </div>
-</form>
 <div data-bind="visible: serviceInfo, with: serviceInfo">
     <table class="table">
     <thead><tr><td>駅ID</td><td>発時刻</td></tr></thead>
