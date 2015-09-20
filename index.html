@@ -21,8 +21,8 @@
   <div>
     <h3>停留所の検索</h3>
     <div class="form-group">
-      <label>停留所名</label>
-      <input class="form-control" data-bind="value: stationName">
+      <label>名前・読みから検索</label>
+      <input class="form-control" data-bind="value: stationName" placeholder="ここに入力...">
     </div>
     <table data-bind="visible: stops().length > 0" class="table">
       <thead>
@@ -43,10 +43,10 @@
     <h3>停留所情報の表示</h3>
     <div class="form-group">
       <label>停留所を選択</label>
-      <select class="form-control" data-bind="options: stops, optionsText: 'name', value:selectedStop">
+      <select class="form-control" data-bind="options: stops, optionsText: 'name', value: selectedStop, optionsCaption: '停留所を選択'">
       </select>
     </div>
-    <div data-bind="visible: stopInfo, with:stopInfo">
+    <div data-bind="visible: stopInfo, with: stopInfo">
       <table class="table">
         <thead>
           <tr>
@@ -97,12 +97,12 @@
     <h3>系統情報の表示</h3>
     <div class="form-group">
       <label>曜日を選択</label>
-      <select class="form-control" data-bind="options: dayType, optionsText: 'name', value:selectedDay">
+      <select class="form-control" data-bind="options: dayType, optionsText: 'name', value: selectedDay, optionsCaption: '曜日を選択'">
       </select>
     </div>
     <div class="form-group" data-bind="visible: selectedDay">
       <label>系統を選択</label>
-      <select class="form-control" data-bind="options: lines, optionsText: 'name', value:selectedLine">
+      <select class="form-control" data-bind="options: lines, optionsText: 'name', value: selectedLine, optionsCaption: '系統を選択'">
       </select>
     </div>
     <div data-bind="visible: services">
@@ -116,19 +116,19 @@
         <tbody>
           <tr>
             <td>系統名</td>
-            <td data-bind="text:selectedLine() && selectedLine().name"></td>
+            <td data-bind="text: selectedLine() && selectedLine().name"></td>
           </tr>
           <tr>
             <td>系統番号</td>
-            <td data-bind="text:selectedLine() && selectedLine().number"></td>
+            <td data-bind="text: selectedLine() && selectedLine().number"></td>
           </tr>
           <tr>
             <td>系統ID</td>
-            <td data-bind="text:selectedLine() && selectedLine().id"></td>
+            <td data-bind="text: selectedLine() && selectedLine().id"></td>
           </tr>
           <tr>
             <td>運行日</td>
-            <td data-bind="text: selectedDay().name"></td>
+            <td data-bind="text: selectedLine() && selectedDay().name"></td>
           </tr>
           <tr>
             <td>発時刻</td>
@@ -141,8 +141,8 @@
                 </thead>
                 <tbody data-bind="foreach: services">
                   <tr>
-                    <td data-bind="text:dept">系統名</td>
-                    <td data-bind="text:bus_id"></td>
+                    <td data-bind="text: dept">系統名</td>
+                    <td data-bind="text: bus_id"></td>
                   </tr>
                 </tbody>
               </table></td>
@@ -155,7 +155,7 @@
     <h3>便情報の表示</h3>
     <div class="form-group">
       <label>便を選択</label>
-      <select class="form-control" data-bind="options: services, optionsText: 'dept', value:selectedService">
+      <select class="form-control" data-bind="options: services, optionsText: 'dept', value: selectedService, optionsCaption: '便を選択'">
       </select>
     </div>
     <div data-bind="visible: serviceInfo, with: serviceInfo">
@@ -168,8 +168,8 @@
         </thead>
         <tbody data-bind="foreach: dept_times">
           <tr>
-            <td data-bind="text:station.name">系統名</td>
-            <td data-bind="text:dept"></td>
+            <td data-bind="text: station && station.name">系統名</td>
+            <td data-bind="text: dept"></td>
           </tr>
         </tbody>
       </table>

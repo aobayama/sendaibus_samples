@@ -12,7 +12,7 @@ $().ready(function() {
             id: 2,
             name: "休日"
         }];
-        self.stationName = ko.observable("仙台駅");
+        self.stationName = ko.observable();
         self.stops = ko.observableArray();
         self.selectedStop = ko.observable();
         self.stopInfo = ko.observable();
