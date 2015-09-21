@@ -1,4 +1,4 @@
-# Sendai City Bus Viewer #
+# Sendai City Bus Explorer #
 
 A simple site to view information provided by the [SendaiCityBusAPI](http://bus.aobayama.net/) project.
 
