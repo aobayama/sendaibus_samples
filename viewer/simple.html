@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>停留所情報の検索</title>
+
+<!-- Bootstrap -->
+<link href="css/bootstrap.css" rel="stylesheet">
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="container">
+  <div>
+    <h3>停留所の検索</h3>
+    <div class="form-group">
+      <label>名前・読みから検索</label>
+      <input class="form-control" data-bind="value: stationName" placeholder="ここに入力...">
+    </div>
+  </div>
+  <div data-bind="visible: stops().length > 0">
+    <h3>停留所の選択</h3>
+    <div class="form-group">
+      <label>停留所を選択</label>
+      <select class="form-control" data-bind="options: stops, optionsText: 'name', value: selectedStop, optionsCaption: '停留所を選択'">
+      </select>
+    </div>
+  </div>
+  <div data-bind="visible: selectedStop">
+    <h3>系統情報の表示</h3>
+    <div class="form-group">
+      <label>曜日を選択</label>
+      <select class="form-control" data-bind="options: dayType, optionsText: 'name', value: selectedDay, optionsCaption: '曜日を選択'">
+      </select>
+    </div>
+    <div class="form-group" data-bind="visible: selectedDay">
+      <label>系統を選択</label>
+      <select class="form-control" data-bind="options: lines, optionsText: 'name', value: selectedLine, optionsCaption: '系統を選択'">
+      </select>
+    </div>
+    <div data-bind="visible: services">
+      <table class="table">
+        <thead>
+          <tr>
+            <td>項目名</td>
+            <td>データ</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>系統名</td>
+            <td data-bind="text: selectedLine() && selectedLine().name"></td>
+          </tr>
+          <tr>
+            <td>発時刻</td>
+            <td>
+            	<ul data-bind="foreach: services">
+                    <li data-bind="text: dept">系統名</li>
+                </ul>
+          	</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div data-bind="visible: selectedLine">
+    <h3>便情報の表示</h3>
+    <div class="form-group">
+      <label>便を選択</label>
+      <select class="form-control" data-bind="options: services, optionsText: 'dept', value: selectedService, optionsCaption: '便を選択'">
+      </select>
+    </div>
+    <div data-bind="visible: serviceInfo, with: serviceInfo">
+      <table class="table">
+        <thead>
+          <tr>
+            <td>駅ID</td>
+            <td>発時刻</td>
+          </tr>
+        </thead>
+        <tbody data-bind="foreach: dept_times">
+          <tr>
+            <td data-bind="text: station && station.name">系統名</td>
+            <td data-bind="text: dept"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <hr>
+  <div>
+  	<p>このサイトは<a href="http://bus.aobayama.net/">仙台市営バスAPI</a>を用いて制作されています</p>
+  </div>
+</div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
+<script src="js/jquery-1.11.2.min.js"></script> 
+
+<!-- Include all compiled plugins (below), or include individual files as needed --> 
+<script src="js/bootstrap.js"></script> 
+
+<!-- Knockout.js --> 
+<script src="js/knockout-3.3.0.js"></script> 
+
+<!-- ViewModel --> 
+<script src="js/viewmodel.js"></script>
+</body>
+</html>
