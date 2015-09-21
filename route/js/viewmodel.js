@@ -46,7 +46,7 @@ $().ready(function () {
         // 出発駅検索
         ko.computed(function () {
             if (self.deptStationName() != null && self.deptStationName() !== "") {
-                $.getJSON("http://bus.aobayama.net/api/stations/search", {
+                $.getJSON("http://bus.aobayama.net/api/v1/stations/search", {
                         name: self.deptStationName()
                     },
                     function (data) {
@@ -61,7 +61,7 @@ $().ready(function () {
         // 到着駅検索
         ko.computed(function () {
             if (self.arrStationName() != null && self.arrStationName() !== "") {
-                $.getJSON("http://bus.aobayama.net/api/stations/search", {
+                $.getJSON("http://bus.aobayama.net/api/v1/stations/search", {
                         name: self.arrStationName()
                     },
                     function (data) {
@@ -77,7 +77,7 @@ $().ready(function () {
         // ルート検索
         ko.computed(function () {
             if (self.arrStation() != null && self.deptStation() != null) {
-                $.getJSON("http://bus.aobayama.net/api/route/search", {
+                $.getJSON("http://bus.aobayama.net/api/v1/route/search", {
                         from: self.deptStation().id,
                         to: self.arrStation().id,
                         daytype: self.daytype(),
